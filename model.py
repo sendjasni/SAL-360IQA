@@ -9,15 +9,14 @@ class Sal360Model():
 
     def regression_block(self, features, out_dim):
 
-        x = tf.keras.layers.Dense(1024, activation="relu",
-                                kernel_initializer=initializer)(features)
+        x = tf.keras.layers.Dense(1024, kernel_initializer=initializer)(features)
+        x = tf.keras.layers.Activation(tf.keras.activations.relu)(x)
         x = tf.keras.layers.Dropout(0.5)(x)
-        x = tf.keras.layers.Dense(512, activation="relu",
-                                kernel_initializer=initializer)(x)
+        x = tf.keras.layers.Dense(512, kernel_initializer=initializer)(x)
+        x = tf.keras.layers.Activation(tf.keras.activations.relu)(x)
         x = tf.keras.layers.Dropout(0.25)(x)
-
-        x = tf.keras.layers.Dense(
-            out_dim, activation='linear', kernel_initializer=initializer)(x)
+        x = tf.keras.layers.Dense(out_dim,  kernel_initializer=initializer)(x)
+        x = tf.keras.layers.Activation(tf.keras.activations.linear)(x)
 
         return x
     
