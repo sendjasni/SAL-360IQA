@@ -6,5 +6,12 @@ Since the introduction of 360-degree images, a significant number of deep learni
 
 ## How to cite:
 ```
-A. Sendjasni and M. -C. Larabi, "SAL-360IQA: A Saliency Weighted Patch-Based CNN Model for 360-Degree Images Quality Assessment," 2022 IEEE International Conference on Multimedia and Expo Workshops (ICMEW), Taipei City, Taiwan, 2022, pp. 1-6, doi: 10.1109/ICMEW56448.2022.9859468.
+@INPROCEEDINGS{9859468,
+  author={Sendjasni, Abderrezzaq and Larabi, Mohamed-Chaker},
+  booktitle={IEEE International Conference on Multimedia and Expo Workshops (ICMEW)}, 
+  title={SAL-360IQA: A Saliency Weighted Patch-Based CNN Model for 360-Degree Images Quality Assessment}, 
+  year={2022},
+  pages={1-6},
+  doi={10.1109/ICMEW56448.2022.9859468}}
+
 ```
