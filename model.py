@@ -3,13 +3,15 @@ import tensorflow as tf
 
 initializer = tf.keras.initializers.he_normal()
 
+
 class Sal360Model():
     def __init__(self):
         pass
 
     def regression_block(self, features, out_dim):
 
-        x = tf.keras.layers.Dense(1024, kernel_initializer=initializer)(features)
+        x = tf.keras.layers.Dense(
+            1024, kernel_initializer=initializer)(features)
         x = tf.keras.layers.Activation(tf.keras.activations.relu)(x)
         x = tf.keras.layers.Dropout(0.5)(x)
         x = tf.keras.layers.Dense(512, kernel_initializer=initializer)(x)
@@ -19,9 +21,9 @@ class Sal360Model():
         x = tf.keras.layers.Activation(tf.keras.activations.linear)(x)
 
         return x
-    
+
     def build_model(self, input_size, out_dim, filters=(64, 128, 256, 512)):
-        
+
         inputs = tf.keras.layers.Input(shape=input_size)
 
         for (i, f) in enumerate(filters):
@@ -52,7 +54,8 @@ class Sal360Model():
         iqa_model = tf.keras.models.Model(inputs=inputs, outputs=output)
         return iqa_model
 
-    class EarlyStoppingAtMinLoss(tf.keras.callbacks.Callback):
+
+class EarlyStoppingAtMinLoss(tf.keras.callbacks.Callback):
     """Stop training when the loss is at its min, i.e. the loss stops decreasing.
 
   Arguments:
