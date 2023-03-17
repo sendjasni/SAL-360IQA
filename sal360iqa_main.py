@@ -99,7 +99,7 @@ if __name__ == '__main__':
                       optimizer=opt, metrics=tf.keras.metrics.RootMeanSquaredError(name='rmse'))
 
     cb = model.create_callbacks_fun(
-        1, out_p, batch_size, val, pre_norm, database)
+        1, out_p, batch_size, pre_norm)
 
     print('[INFO] Training the model...')
     iqa_model.fit(x=train_x, y=train_y, validation_split=val,
