@@ -7,7 +7,8 @@ import argparse
 import pandas as pd
 import csv
 import model
-
+import dataset
+from sklearn.model_selection import train_test_split
 
 os.environ['PYTHONHASHSEED'] = '0'
 os.environ['TF_DETERMINISTIC_OPS'] = '1'
@@ -18,6 +19,9 @@ SEED = 123
 np.random.seed(SEED)
 python_random.seed(SEED)
 tf.random.set_seed(SEED)
+
+NBR_PATCHES = 176
+OIQA_IMG = 320
 
 def select_gpu(id_gpu):
     gpus = tf.config.list_physical_devices('GPU')
@@ -72,7 +76,10 @@ if __name__ == '__main__':
         pre_norm = 'RGB'
     
     # Read your data
-    # Scale/normalize the data
+    data = dataset.Dataset()
+    patches, mos = data.get_input(patches_data, patches_path, OIQA_IMG, NBR_PATCHES)
+    train_x, test_x, train_y, test_y = train_test_split(patches, mos, test_size=0.2, random_state=42)
+
     # Split into training and testing sets (train_x, train_y) (test_x, test_y)
     
     sal360iqa = model.Sal360Model()
