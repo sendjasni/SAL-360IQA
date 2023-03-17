@@ -74,10 +74,12 @@ if __name__ == '__main__':
     if normalization == 1:
         inp_s = (128, 128, 1)
         pre_norm = 'LCN'
+        norm = True
     elif normalization == 0:
         inp_s = (256, 256, 3)
         pre_norm = 'RGB'
-
+        norm = False
+        
     # Read your data
     data = dataset.Dataset()
     patches, mos = data.get_input(
