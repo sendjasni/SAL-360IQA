@@ -83,9 +83,11 @@ if __name__ == '__main__':
     # Read your data
     data = dataset.Dataset()
     patches, mos = data.get_input(
-        patches_data, patches_path, OIQA_IMG, NBR_PATCHES, normalization)
+        patches_data, patches_path, OIQA_IMG, NBR_PATCHES, norm)
 
     # Split into training and testing sets (train_x, train_y) (test_x, test_y)
+    # For the sake of illustration, you can use the train_test_split from the sklearn lib
+    
     train_x, test_x, train_y, test_y = train_test_split(
         patches, mos, test_size=0.2, random_state=42)
 
