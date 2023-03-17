@@ -90,7 +90,8 @@ if __name__ == '__main__':
     
     train_x, test_x, train_y, test_y = train_test_split(
         patches, mos, test_size=0.2, random_state=42)
-
+    
+    out_dim = 1
     sal360iqa = model.Sal360Model()
     iqa_model = Sal360Model.build_model(inp_s, out_dim)
 
