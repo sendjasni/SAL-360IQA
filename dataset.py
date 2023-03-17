@@ -17,7 +17,7 @@ class Dataset:
         img_ln = (img - img_mean) / img_std
         return img_ln
 
-    def get_input(self, data_file, patches_path, nbr_img, nbr_patches):
+    def get_input(self, data_file, patches_path, nbr_img, nbr_patches, norm=True):
 
         df = pd.read_csv(data_file)
         moss = df['MOS'].tolist()
@@ -26,9 +26,10 @@ class Dataset:
         mos_per_patch = []
         for i, f in enumerate(df['PATCH'][:nbr_img * nbr_patches]):
             patch = tf.keras.preprocessing.image.load_img(patches_path + f)
-
-            patch = patch.convert('L')
-            patch = self.Local_normalization(patch)
+            patch = tf.keras.preprocessing.image.img_to_array(patch)
+            if norm:
+                patch = patch.convert('L')
+                patch = self.Local_normalization(patch)
             patches.append(patch)
 
             mos_per_patch.append(moss[i])
